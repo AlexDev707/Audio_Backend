@@ -13,6 +13,7 @@ const AudioSchema = new Schema(
     },
     streamsCount: {
       type: Number,
+      default: 0,
     },
     genres: {
       type: [
@@ -20,9 +21,6 @@ const AudioSchema = new Schema(
           type: String,
         },
       ],
-    },
-    title: {
-      type: Number,
     },
   },
   {
