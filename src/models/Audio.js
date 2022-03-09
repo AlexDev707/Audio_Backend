@@ -4,12 +4,15 @@ const AudioSchema = new Schema(
   {
     author: {
       type: String,
+      required: true
     },
     title: {
       type: String,
+      required: true
     },
     fileUrl: {
       type: String,
+      required: true
     },
     streamsCount: {
       type: Number,
