@@ -1,0 +1,10 @@
+const express = require("express");
+const { AudiosController } = require("../controllers");
+const audiosController = new AudiosController();
+const router = express.Router();
+router.post("/", audiosController.create);
+router.get("/", audiosController.searchSongsWithQueryParams);
+router.get("/new", audiosController.getNewSongs);
+router.get("/mixes/:genre", audiosController.getTopSongs);
+router.get("/autocomplete", audiosController.getSongsByQueryString);
+module.exports = router;
