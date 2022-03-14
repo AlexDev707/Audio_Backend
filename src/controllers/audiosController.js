@@ -38,6 +38,8 @@ class AudiosController {
    */
   getNewSongs = async (req, res, next) => {
     try {
+      const newAudios = await this.audiosService.getNew();
+      res.json(newAudios);
     } catch (error) {
       next(error);
     }
@@ -68,5 +70,21 @@ class AudiosController {
       next(error);
     }
   };
+
+  /**
+   * Patch streams count
+   * @param {import('express').Request} req
+   * @param {import('express').Response} res
+   * @param {import('express').NextFunction} next
+   */
+  incrementStreamsCount = async (req, res, next) => {
+    try {
+      const newCount = await this.audiosService.incrementStreamsCount();
+      res.json(`New streams count is ${newCount}`);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
+
 module.exports = AudiosController;
