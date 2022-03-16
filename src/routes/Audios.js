@@ -7,6 +7,7 @@ const audiosController = new AudiosController();
 const router = express.Router();
 router.post(
   "/",
+  express.urlencoded(),
   schemaValidate(create),
   upload.single("audioUrl"),
   audiosController.create

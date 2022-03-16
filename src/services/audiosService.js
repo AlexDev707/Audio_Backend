@@ -9,7 +9,7 @@ class AudiosService {
     await cloudinary.uploader.upload(file.filepath, {
       resource_type: "video",
     });
-    await fs.unlink(process.cwd(), `../../uploads/${file.originalname}`);
+    await fs.unlink(process.cwd(), `uploads/${file.originalname}`);
     const newAudio = await AudioModel.create({
       ...audioData,
       fileUrl: file.filepath,
