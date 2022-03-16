@@ -1,5 +1,6 @@
-ilemodule.exports = (schema) => async (req, res, next) => {
+module.exports = (schema) => async (req, res, next) => {
   try {
+    console.log(req.body);
     await schema.validate(req.body, { abortEarly: false });
     next();
   } catch (error) {
