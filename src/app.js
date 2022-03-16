@@ -4,7 +4,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const cloudinary = require("cloudinary");
 const app = express();
 const cloudinary = require("cloudinary").v2;
 mongoose
