@@ -23,9 +23,6 @@ app.use(volleyball);
 app.use(helmet());
 app.use(cors({ origin: "*" }));
 app.use("/api", apiRouter);
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello, World!" });
-});
 app.use((error, req, res, next) => {
   console.log(error);
   res.status(500).json({
