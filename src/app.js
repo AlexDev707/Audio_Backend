@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const { apiRouter } = require("./routes");
 const app = express();
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Database connected successfully"))
