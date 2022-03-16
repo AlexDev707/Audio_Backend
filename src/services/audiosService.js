@@ -4,15 +4,20 @@ const cloudinary = require("cloudinary").v2;
 const { getAudioDurationInSeconds } = require("get-audio-duration");
 class AudiosService {
   //* Create new audio
-  async create(audioData, file) {
-    const duration = await getAudioDurationInSeconds(file.filepath);
-    await cloudinary.uploader.upload(file.filepath, {
+  async create(audioData, files) {
+    const duration = await getAudioDurationInSeconds(files[0].filepath);
+    await cloudinary.uploader.upload(files[0].filepath, {
       resource_type: "video",
     });
-    await fs.unlink(process.cwd(), `uploads/${file.originalname}`);
+    await cloudinary.uploader.upload(files[1].filepath, {
+      resource_type: "image",
+    });
+    await fs.unlink(process.cwd(), `uploads/${files[0].originalname}`);
+    await fs.unlink(process.cwd(), `uploads/${files[1].originalname}`);
     const newAudio = await AudioModel.create({
       ...audioData,
-      fileUrl: file.filepath,
+      audioUrl: files[0].filepath,
+      imageUrl: files[1].filepath,
       duration: duration / 1000,
     });
     return newAudio;

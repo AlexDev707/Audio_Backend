@@ -8,9 +8,12 @@ const audiosController = new AudiosController();
 const router = express.Router();
 router.post(
   "/",
-  express.urlencoded(),
-  schemaValidate(create),
-  upload.single("audioUrl"),
+  upload.none(),
+  upload.fields([
+    { name: "audio", maxCount: 1 },
+    { name: "image", maxCount: 1 },
+  ]),
+  // schemaValidate(create),
   audiosController.create
 );
 router.get("/", audiosController.searchSongsWithQueryParams);
