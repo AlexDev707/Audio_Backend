@@ -81,7 +81,7 @@ class AudiosController {
   incrementStreamsCount = async (req, res, next) => {
     try {
       const newCount = await this.audiosService.incrementStreamsCount();
-      res.json(`New streams count is ${newCount}`);
+      res.json(newCount);
     } catch (error) {
       next(error);
     }

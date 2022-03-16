@@ -14,10 +14,6 @@ const AudioSchema = new Schema(
       type: String,
       required: true,
     },
-    duration: {
-      type: Number,
-      required: true,
-    },
     streamsCount: {
       type: Number,
       default: 0,
