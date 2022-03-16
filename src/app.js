@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
+const { apiRouter } = require("./routes");
 const cloudinary = require("cloudinary").v2;
 mongoose
   .connect(process.env.MONGODB_URI)
