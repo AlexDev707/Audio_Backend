@@ -4,9 +4,9 @@ const helmet = require("helmet");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const cloudinary = require("cloudinary");
 const app = express();
-
+const { apiRouter } = require("./routes");
+const cloudinary = require("cloudinary").v2;
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Database connected successfully"))
@@ -22,9 +22,12 @@ app.use(express.json());
 app.use(volleyball);
 app.use(helmet());
 app.use(cors({ origin: "*" }));
-
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello, World!" });
+app.use("/api", apiRouter);
+app.use((error, req, res, next) => {
+  console.log(error);
+  res.status(500).json({
+    message: error.message,
+  });
 });
 
 module.exports = app;

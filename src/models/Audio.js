@@ -1,18 +1,22 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, SchemaTypes } = require("mongoose");
 
 const AudioSchema = new Schema(
   {
     author: {
       type: String,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
-    fileUrl: {
+    audioUrl: {
       type: String,
-      required: true
+      required: true,
+    },
+    imageUrl: {
+      type: String,
+      required: true,
     },
     streamsCount: {
       type: Number,
