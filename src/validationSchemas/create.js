@@ -4,6 +4,6 @@ const createSchema = yup.object().shape({
   title: yup.string().required("Required field!"),
   // audio: yup.mixed().required("Required field!"),
   // image: yup.mixed().required("Required field!"),
-  genres: yup.array(yup.string()),
+  genres: yup.string(),
 });
 module.exports = createSchema;

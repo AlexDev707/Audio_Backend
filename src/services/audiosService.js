@@ -11,12 +11,13 @@ class AudiosService {
       resource_type: "video",
     });
    const image = await cloudinary.uploader.upload(files.image[0].path);
-    await fs.unlink(process.cwd(), `uploads/${files.audio[0].originalname}`);
-    await fs.unlink(process.cwd(), `uploads/${files.image[0].originalname}`);
+    await fs.unlink(`${files.audio[0].destination}/${files.audio[0].originalname}`);
+    await fs.unlink(`${files.image[0].destination}/${files.image[0].originalname}`);
     const newAudio = await AudioModel.create({
       ...audioData,
-      audioUrl: audio.public_id,
-      imageUrl: image.public_id,
+      genres: audioData.genres.split(", "),
+      audioUrl: audio.url,
+      imageUrl: image.url,
       duration: duration * 1000,
     });
     return newAudio;
