@@ -25,7 +25,7 @@ class AudiosController {
    */
   searchSongsWithQueryParams = async (req, res, next) => {
     try {
-      const response = this.audiosService.searchSongsWithParams(req.query);
+      const response = await this.audiosService.searchSongsWithParams(req.query);
       res.json(response);
     } catch (error) {
       next(error);
