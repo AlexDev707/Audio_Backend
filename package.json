@@ -12,6 +12,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.12",
+    "swagger-ui-express": "^4.3.0",
     "volleyball": "^1.5.1",
     "yup": "^0.32.11"
   },
