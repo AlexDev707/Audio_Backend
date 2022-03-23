@@ -7,6 +7,7 @@ require("dotenv").config();
 const app = express();
 const { apiRouter } = require("./routes");
 const cloudinary = require("cloudinary").v2;
+const swaggerUI = require("swagger-ui-express");
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Database connected successfully"))
@@ -21,8 +22,10 @@ cloudinary.config({
 app.use(express.json());
 app.use(volleyball);
 app.use(helmet());
+
 app.use(cors({ origin: "*" }));
 app.use("/api", apiRouter);
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(require("./docs.json")));
 app.use((error, req, res, next) => {
   console.log(error);
   res.status(500).json({
