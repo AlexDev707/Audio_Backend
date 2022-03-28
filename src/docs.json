@@ -52,9 +52,10 @@
                       "genres": {
                         "type": "array",
                         "items": {
-                          "type": "string"
-                        },
-                        "example": ["Rock", "Jazz"]
+                          "type": "string",
+                          "example": "Rock"
+                        }
+                        
                       },
                       "createdAt": {
                         "type": "string",
@@ -118,7 +119,8 @@
                     "genres": {
                       "type": "array",
                       "items": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "Rap"
                       }
                     },
                     "createdAt": {
