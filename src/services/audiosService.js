@@ -1,24 +1,21 @@
 const { AudioModel } = require("../models");
 const fs = require("fs").promises;
 const cloudinary = require("cloudinary").v2;
-const { getAudioDurationInSeconds } = require("get-audio-duration");
 class AudiosService {
   //* Create new audio
   async create(audioData, files) {
-    const duration = await getAudioDurationInSeconds(files[0].filepath);
-    await cloudinary.uploader.upload(files[0].filepath, {
+    console.log(files)
+   const audio = await cloudinary.uploader.upload(files.audio[0].path, {
       resource_type: "video",
     });
-    await cloudinary.uploader.upload(files[1].filepath, {
-      resource_type: "image",
-    });
-    await fs.unlink(process.cwd(), `uploads/${files[0].originalname}`);
-    await fs.unlink(process.cwd(), `uploads/${files[1].originalname}`);
+   const image = await cloudinary.uploader.upload(files.image[0].path);
+    await fs.unlink(`${files.audio[0].destination}/${files.audio[0].originalname}`);
+    await fs.unlink(`${files.image[0].destination}/${files.image[0].originalname}`);
     const newAudio = await AudioModel.create({
       ...audioData,
-      audioUrl: files[0].filepath,
-      imageUrl: files[1].filepath,
-      duration: duration / 1000,
+      genres: audioData.genres.split(", "),
+      audioUrl: audio.url,
+      imageUrl: image.url,
     });
     return newAudio;
   }
@@ -49,10 +46,10 @@ class AudiosService {
    * @returns
    */
 
-  async getNew(sortOrder) {
+  async getNew() {
     const newAudios = AudioModel.find(null, null, {
       sort: {
-        createdAt: sortOrder === ASC ? 1 : -1,
+        createdAt: -1,
       },
     });
     return newAudios;

@@ -21,11 +21,7 @@ router.get("/new", audiosController.getNewSongs);
 router.get("/mixes/:genre", audiosController.getTopSongs);
 router.get("/autocomplete", async (req, res) => {
   try {
-    let { search, perPage = 2, page = 1 } = req.query;
-    if (page === '') {
-      page = 1;
-    }
-
+    let { search} = req.query;
     const audios = await AudioModel.find(
       {
         title: {
@@ -39,20 +35,7 @@ router.get("/autocomplete", async (req, res) => {
       }
     );
 
-    const count = await AudioModel.countDocuments({
-      title: {
-        $regex: search,
-        $options: 'i',
-      },
-    });
-
-    res.json({
-      audios,
-      count: count,
-      activePage: Number(page),
-      perPage: Number(perPage),
-      pagesCount: Math.ceil(count / Number(perPage)),
-    });
+    res.json(audios);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
