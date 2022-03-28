@@ -54,7 +54,7 @@
                                       "items":{
                                           "type":"string"
                                       },
-                                      "example": "Rock"
+                                      "example": ["rock", "jazz"]
                                       
                                     },"createdAt": {
                                         "type": "string",
