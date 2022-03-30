@@ -51,6 +51,7 @@ class AudiosService {
       sort: {
         createdAt: -1,
       },
+      limit: 12,
     });
     return newAudios;
   }

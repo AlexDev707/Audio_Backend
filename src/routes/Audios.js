@@ -22,7 +22,7 @@ router.get("/mixes/:genre", async (req, res) => {
     let { genre } = req.params;
   
     const audios = await AudioModel.find(      {
-      genre,
+      genres: genre,
     },
     null,
     {
