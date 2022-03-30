@@ -47,7 +47,8 @@
                       },
                       "streamsCount": {
                         "type": "number",
-                        "example": 0
+                        "example": 100,
+                        "default": 0
                       },
                       "genres": {
                         "type": "array",
@@ -124,7 +125,8 @@
                     },
                     "streamsCount": {
                       "type": "number",
-                      "example": 0
+                      "example": 100,
+                      "default": 0
                     },
                     "genres": {
                       "type": "array",
