@@ -18,7 +18,24 @@ router.post(
 );
 router.get("/", audiosController.searchSongsWithQueryParams);
 router.get("/new", audiosController.getNewSongs);
-router.get("/mixes/:genre", audiosController.getTopSongs);
+router.get("/mixes/:genre", async (req, res) => {
+  try { 
+    let { genre } = req.params;
+  
+    const audios = await AudioModel.find(      {
+      genre,
+    },
+    null,
+    {
+      limit: 12,
+      sort: {streamsCount: -1}
+    });
+
+    res.json(audios)
+  } catch(error) {
+    res.status(500).send(error);
+  }
+});
 router.get("/autocomplete", async (req, res) => {
   try {
     let { search} = req.query;
