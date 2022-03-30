@@ -85,9 +85,19 @@
         }
       }
     },
-    "/audios/:audioId/listen": {
+    "/audios/{audioId}/listen": {
       "patch": {
         "description": "Increment streams count",
+        "parameters": [
+          {
+            "name": "audioId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
