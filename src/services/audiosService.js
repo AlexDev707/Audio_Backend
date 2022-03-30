@@ -59,9 +59,9 @@ class AudiosService {
   async getTopByGenre() {}
   //* Search songs by query
   async getSongsByQuery() {}
-  async incrementStreamsCount() {
+  async incrementStreamsCount(audioId) {
     const newCount = await AudioModel.findByIdAndUpdate(
-      req.params.audioId,
+      audioId,
       { $inc: { streamsCount: 1 } },
       {
         new: true,

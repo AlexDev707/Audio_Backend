@@ -60,5 +60,5 @@ router.get("/autocomplete", async (req, res) => {
 
 //  audiosController.getSongsByQueryString
  );
-router.patch("/audios/:audioId/listen", audiosController.incrementStreamsCount);
+router.patch("/:audioId/listen", audiosController.incrementStreamsCount);
 module.exports = router;
