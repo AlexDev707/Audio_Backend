@@ -11,8 +11,8 @@ class AudiosController {
    */
   create = async (req, res, next) => {
     try {
-      const newAudio = this.audiosService.create(req.body, req.files);
-      res.json(newAudio);
+      const newAudio = await this.audiosService.create(req.body, req.files);
+      res.status(201).json(newAudio);
     } catch (error) {
       next(error);
     }
@@ -25,7 +25,9 @@ class AudiosController {
    */
   searchSongsWithQueryParams = async (req, res, next) => {
     try {
-      const response = await this.audiosService.searchSongsWithParams(req.query);
+      const response = await this.audiosService.searchSongsWithParams(
+        req.query
+      );
       res.json(response);
     } catch (error) {
       next(error);
