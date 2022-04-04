@@ -45,10 +45,10 @@ class AudiosService {
    * @returns
    */
 
-  async getNew(sortOrder) {
+  async getNew() {
     const newAudios = AudioModel.find(null, null, {
       sort: {
-        createdAt: sortOrder === ASC ? 1 : -1,
+        createdAt: -1,
       },
     });
     return newAudios;
