@@ -12,7 +12,7 @@ class AudiosController {
   create = async (req, res, next) => {
     try {
       const newAudio = await this.audiosService.create(req.body, req.files);
-      res.json(newAudio);
+      res.status(201).json(newAudio);
     } catch (error) {
       next(error);
     }
