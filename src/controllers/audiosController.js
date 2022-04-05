@@ -11,7 +11,7 @@ class AudiosController {
    */
   create = async (req, res, next) => {
     try {
-      const newAudio = this.audiosService.create(req.body, req.files);
+      const newAudio = await this.audiosService.create(req.body, req.files);
       res.json(newAudio);
     } catch (error) {
       next(error);
@@ -53,7 +53,10 @@ class AudiosController {
    */
   getTopSongs = async (req, res, next) => {
     try {
-      const { genre } = req.params;
+      const { genre } = req.params
+      const topAudios = await this.audiosService.getTopByGenre(genre)
+      res.json(topAudios)
+      
     } catch (error) {
       next(error);
     }

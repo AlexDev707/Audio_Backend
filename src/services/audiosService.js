@@ -58,9 +58,14 @@ class AudiosService {
     return newAudios;
   }
   //* Get top 12 songs by genre
-  async getTopByGenre() {}
+  async getTopByGenre() {
+    
+
+  }
   //* Search songs by query
-  async getSongsByQuery() {}
+  async getSongsByQuery() {
+    
+  }
   async incrementStreamsCount() {
     const newCount = await AudioModel.findByIdAndUpdate(
       req.params.audioId,

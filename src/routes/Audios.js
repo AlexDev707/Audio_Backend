@@ -16,9 +16,40 @@ router.post(
   // schemaValidate(create),
   audiosController.create
 );
+
 router.get("/", audiosController.searchSongsWithQueryParams);
 router.get("/new", audiosController.getNewSongs);
-router.get("/mixes/:genre", audiosController.getTopSongs);
+router.get("/mixes/:genre", async (req, res) => {
+  try { 
+    let { genre } = req.params;
+    
+    if(genre === "all"){
+      const audiosSortAll = await AudioModel.find({
+
+      },
+      null,
+      {
+        limit: 12,
+        sort: {streamsCount: -1}
+      });
+  
+      res.json(audiosSortAll)
+    }
+
+    const audiosSortByGenre = await AudioModel.find({
+      genres: genre,
+    },
+    null,
+    {
+      limit: 12,
+      sort: {streamsCount: -1}
+    });
+
+    res.json(audiosSortByGenre)
+  } catch(error) {
+    res.status(500).send(error);
+  }
+});
 router.get("/autocomplete", async (req, res) => {
   try {
     let { search} = req.query;
