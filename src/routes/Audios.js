@@ -15,13 +15,26 @@ router.post(
   // schemaValidate(create),
   audiosController.create
 );
+
 router.get("/", audiosController.searchSongsWithQueryParams);
 router.get("/new", audiosController.getNewSongs);
 router.get("/mixes/:genre", async (req, res) => {
   try { 
     let { genre } = req.params;
+    
+    if(genre === "all"){
+      const audiosSortAll = await AudioModel.find(
+      null,
+      null,
+      {
+        limit: 12,
+        sort: {streamsCount: -1}
+      });
   
-    const audios = await AudioModel.find(      {
+      return res.json(audiosSortAll);
+    }
+
+    const audiosSortByGenre = await AudioModel.find({
       genres: genre,
     },
     null,
@@ -30,7 +43,7 @@ router.get("/mixes/:genre", async (req, res) => {
       sort: {streamsCount: -1}
     });
 
-    res.json(audios)
+    res.json(audiosSortByGenre)
   } catch(error) {
     res.status(500).send(error);
   }
