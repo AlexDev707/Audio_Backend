@@ -4,13 +4,16 @@ const cloudinary = require("cloudinary").v2;
 class AudiosService {
   //* Create new audio
   async create(audioData, files) {
-    console.log(files)
-   const audio = await cloudinary.uploader.upload(files.audio[0].path, {
+    const audio = await cloudinary.uploader.upload(files.audio[0].path, {
       resource_type: "video",
     });
-   const image = await cloudinary.uploader.upload(files.image[0].path);
-    await fs.unlink(`${files.audio[0].destination}/${files.audio[0].originalname}`);
-    await fs.unlink(`${files.image[0].destination}/${files.image[0].originalname}`);
+    const image = await cloudinary.uploader.upload(files.image[0].path);
+    await fs.unlink(
+      `${files.audio[0].destination}/${files.audio[0].originalname}`
+    );
+    await fs.unlink(
+      `${files.image[0].destination}/${files.image[0].originalname}`
+    );
     const newAudio = await AudioModel.create({
       ...audioData,
       genres: audioData.genres.split(", "),

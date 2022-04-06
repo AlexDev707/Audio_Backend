@@ -12,7 +12,7 @@ class AudiosController {
   create = async (req, res, next) => {
     try {
       const newAudio = await this.audiosService.create(req.body, req.files);
-      res.json(newAudio);
+      res.status(201).json(newAudio);
     } catch (error) {
       next(error);
     }
@@ -25,7 +25,9 @@ class AudiosController {
    */
   searchSongsWithQueryParams = async (req, res, next) => {
     try {
-      const response = await this.audiosService.searchSongsWithParams(req.query);
+      const response = await this.audiosService.searchSongsWithParams(
+        req.query
+      );
       res.json(response);
     } catch (error) {
       next(error);
@@ -80,7 +82,9 @@ class AudiosController {
    */
   incrementStreamsCount = async (req, res, next) => {
     try {
-      const newCount = await this.audiosService.incrementStreamsCount(req.params.audioId);
+      const newCount = await this.audiosService.incrementStreamsCount(
+        req.params.audioId
+      );
       res.json(newCount);
     } catch (error) {
       next(error);
