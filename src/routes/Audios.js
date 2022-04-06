@@ -24,16 +24,15 @@ router.get("/mixes/:genre", async (req, res) => {
     let { genre } = req.params;
     
     if(genre === "all"){
-      const audiosSortAll = await AudioModel.find({
-
-      },
+      const audiosSortAll = await AudioModel.find(
+      null,
       null,
       {
         limit: 12,
         sort: {streamsCount: -1}
       });
   
-      res.json(audiosSortAll)
+      return res.json(audiosSortAll);
     }
 
     const audiosSortByGenre = await AudioModel.find({
