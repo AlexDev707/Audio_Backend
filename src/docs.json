@@ -16,99 +16,7 @@
     }
   ],
   "paths": {
-    "/audios": {
-      "get": {
-        "description": "search",
-        "parameters": 
-          {
-            "page": {
-              "type": "number",
-              "example": "1"
-            },
-            "perPage": {
-              "type": "number",
-              "example": 12
-            },
-
-            "sortBy": {
-              "type": "string",
-              "enum": [
-                "streamsCount", "title"
-              ]
-            },
-            "sortOrder": {
-              "type": "number",
-              "example": 1
-            }
-          },
-        
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "author": {
-                        "type": "string",
-                        "example": "author 1"
-                      },
-                      "title": {
-                        "type": "string",
-                        "example": "title 1"
-                      },
-                      "audioUrl": {
-                        "type": "string",
-                        "example": "http://url.com"
-                      },
-                      "imageUrl": {
-                        "type": "string",
-                        "example": "http://url.com"
-                      },
-                      "streamsCount": {
-                        "type": "number",
-                        "example": 0
-                      },
-                      "genres": {
-                        "type": "array",
-                        "items": {
-                          "type": "string",
-                          "example": "Rock"
-                        }
-                        
-                      },
-                      "createdAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2022-01-23T10:46:06.831Z"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2022-01-23T10:46:06.831Z"
-                      },
-                      "_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "61ed31eedacddd4d88b1daf6"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Common error code",
-            "content": {}
-          }
-        }
-
-      }
-    },
+  
     "/audios/new": {
       "get": {
         "description": "Get audios sorted by date",
@@ -255,7 +163,132 @@
         }
       }
     },
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+    
     "/audios": {
+        "get": {
+        "description": "search",
+        "parameters": [
+          {
+          "name": "page",
+          "in": "query",
+          "required": true,
+          "schema":{
+            "type": "number",
+            "example" : 1
+          }
+          }, 
+           {
+            "name": "perPage",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"number",
+              "example": 12
+            }
+            },  {
+              "name": "sortBy",
+              "in": "query",
+              "required": true,
+          "schema": {
+            "type":"string",
+            "enum": [
+              "streamsCount", "title"
+            ]
+            
+          }
+              }, {
+                "name": "sortOrder",
+                "in": "query",
+                "required": true,
+                "schema":{
+                  "type": "number",
+                  "example" : 1
+                }
+                }
+            ],
+        
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "author": {
+                        "type": "string",
+                        "example": "author 1"
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "title 1"
+                      },
+                      "audioUrl": {
+                        "type": "string",
+                        "example": "http://url.com"
+                      },
+                      "imageUrl": {
+                        "type": "string",
+                        "example": "http://url.com"
+                      },
+                      "streamsCount": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "genres": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "Rock"
+                        }
+                        
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-01-23T10:46:06.831Z"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2022-01-23T10:46:06.831Z"
+                      },
+                      "_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "61ed31eedacddd4d88b1daf6"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Common error code",
+            "content": {}
+          }
+        }
+
+      },
       "post": {
         "summary": "Create new audio",
         "responses": {
