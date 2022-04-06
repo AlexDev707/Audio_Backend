@@ -25,10 +25,15 @@ class AudiosController {
    */
   searchSongsWithQueryParams = async (req, res, next) => {
     try {
+<<<<<<< HEAD
       const response = await this.audiosService.searchSongsWithParams(
         req.query
       );
       res.json(response);
+=======
+      const response = await this.audiosService.searchSongsWithParams(req.query);
+      res.status(200).json(response);
+>>>>>>> origin/makar190_branch
     } catch (error) {
       next(error);
     }

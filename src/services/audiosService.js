@@ -4,7 +4,11 @@ const cloudinary = require("cloudinary").v2;
 class AudiosService {
   //* Create new audio
   async create(audioData, files) {
+<<<<<<< HEAD
     const audio = await cloudinary.uploader.upload(files.audio[0].path, {
+=======
+   const audio = await cloudinary.uploader.upload(files.audio[0].path, {
+>>>>>>> origin/makar190_branch
       resource_type: "video",
     });
     const image = await cloudinary.uploader.upload(files.image[0].path);
@@ -18,7 +22,11 @@ class AudiosService {
       ...audioData,
       genres: audioData.genres.split(", "),
       audioUrl: audio.url,
+<<<<<<< HEAD
       imageUrl: image.url,
+=======
+      imageUrl: image.url
+>>>>>>> origin/makar190_branch
     });
     return newAudio;
   }

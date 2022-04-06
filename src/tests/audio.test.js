@@ -18,3 +18,20 @@ describe("CREATE NEW AUDIO: ", () => {
     expect(response.statusCode).toBe(201);
   });
 });
+describe("SEARCH AUDIO BY QUERY PARAMS: ", () => {
+  test("should find audios: ", async () => {
+    jest.setTimeout(30000)
+    const response = await await request(app)
+      .get("/api/audios")
+      .query({
+          query: "Revenge",
+          page: 1,
+          perPage: 12,
+          sortBy: 'streamsCount',
+          sortOrder: 1
+      })
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.length > 0).toBe(true)
+  });
+});
