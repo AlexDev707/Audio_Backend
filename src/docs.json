@@ -55,7 +55,6 @@
                           "type": "string",
                           "example": "Rock"
                         }
-                        
                       },
                       "createdAt": {
                         "type": "string",
@@ -153,6 +152,38 @@
     "/audios": {
       "post": {
         "summary": "Create new audio",
+        "requestBody": {
+          "description": "Audio request body",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string",
+                    "example": "Lil Peep"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Save that shit"
+                  },
+                  "audio": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "genres": {
+                    "type": "string",
+                    "example":"rap, hip hop"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "422": {
             "description": "Validation Error",
