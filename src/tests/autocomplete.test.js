@@ -5,9 +5,6 @@ const audio = path.join(__dirname, "../../uploads/2.mp3");
 const image = path.join(__dirname, "../../uploads/1.jpg");
 const mongoose = require("mongoose");
 const { AudioModel } = require("../models");
-const { array } = require("../utils/multer");
-const { prototype } = require("events");
-
 describe("AUTOCOMPLETE", () => {
   beforeAll(async () => {
     await mongoose.connect(process.env.MONGODB_URI_TEST);
@@ -18,7 +15,7 @@ describe("AUTOCOMPLETE", () => {
   });
 
   test("should show matching audios: ", async () => {
-    jest.setTimeout(500000);
+    jest.setTimeout(100000);
 
     await request(app)
       .post("/api/audios")
@@ -35,5 +32,10 @@ describe("AUTOCOMPLETE", () => {
     expect(response.statusCode).toBe(200);
     expect(response.type).toBe("application/json");
     expect(response.body.length >= 0).toBe(true);
+    if (response.body.length > 0) {
+      expect(response.body).toEqual(
+        expect.arrayContaining([expect.any(Object)])
+      );
+    } else null;
   });
 });
